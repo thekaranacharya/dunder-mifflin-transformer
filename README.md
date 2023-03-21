@@ -1,2 +1,2 @@
 # dunder-mifflin-transformer
-A transformer-based generator that writes The Office (US)-like episode scripts 
+A decoder-only transformer-based generator that writes new episode scripts for The Office (US)
