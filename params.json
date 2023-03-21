@@ -1,0 +1,12 @@
+{
+  "batch_size": 32,
+  "block_size": 512,
+  "epochs": 6000,
+  "eval_interval": 300,
+  "learning_rate": 3e-4,
+  "eval_iters": 200,
+  "n_embd": 384,
+  "n_blocks": 20,
+  "n_heads": 16,
+  "dropout_rate": 0.2
+}
