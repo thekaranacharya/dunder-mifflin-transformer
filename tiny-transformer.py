@@ -4,75 +4,11 @@ import torch
 import torch.nn as nn
 from torch.nn import functional
 
-# -----------------
-# Hyperparameters
-batch_size = 32
-block_size = 512
-epochs = 6000
-eval_interval = 300
-learning_rate = 3e-4
-device = "cuda:3" if torch.cuda.is_available() else "cpu"
-eval_iters = 200
-n_embd = 384
-n_blocks = 20
-n_heads = 16
-dropout_rate = 0.2
-# -----------------
-
-torch.manual_seed(1337)
-
-# Get and read the data
-# !wget https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
-with open("the-office-script.txt", "r", encoding="utf-8") as f:
-    text = f.read()
-
-# Get unique characters in the dataset
-chars = sorted(list(set(text)))
-vocab_size = len(chars)
-
-# Create encoder and decoder to map characters to int and vice-a-versa
-char_to_int = {char: i for i, char in enumerate(chars)}
-int_to_char = {i: char for i, char in enumerate(chars)}
-encode = lambda char_seq: [char_to_int[c] for c in char_seq]
-decode = lambda tokens: "".join([int_to_char[token] for token in tokens])
-
-# Define the tokens for the entire text
-tokens = torch.tensor(encode(text), dtype=torch.long)
-
-# Split tokens into train and val (90-10 split)
-edge = int(0.9 * len(tokens))
-tokens_train = tokens[:edge]
-tokens_val = tokens[edge:]
-
-
-def get_batch(which="train"):
-    data = tokens_train if which == "train" else tokens_val
-    random_start_indices = torch.randint(len(data) - block_size, (batch_size,))
-    x = torch.stack([data[i : i + block_size] for i in random_start_indices])
-    y = torch.stack([data[i + 1 : i + block_size + 1] for i in random_start_indices])
-    x, y = x.to(device), y.to(device)
-    return x, y
-
-
-@torch.no_grad()
-def estimate_loss(model):
-    result = {}
-    model.eval()
-
-    for split in ("train", "val"):
-        losses = torch.zeros(eval_iters)
-        for i in range(eval_iters):
-            x_batch, y_batch = get_batch(which=split)
-            logits, loss = model(x_batch, y_batch)
-            losses[i] = loss.item()
-        result[split] = losses.mean()
-
-    model.train()
-    return result
+# torch.manual_seed(1337)  # Set global seed
 
 
 class SelfAttentionHead(nn.Module):
-    def __init__(self, n_embd, head_size):
+    def __init__(self, n_embd, head_size, block_size):
         super().__init__()
         self.key = nn.Linear(n_embd, head_size, bias=False)
         self.query = nn.Linear(n_embd, head_size, bias=False)
@@ -96,10 +32,10 @@ class SelfAttentionHead(nn.Module):
 
 
 class MultiHeadedAttention(nn.Module):
-    def __init__(self, n_embd, num_heads, head_size):
+    def __init__(self, n_embd, num_heads, head_size, block_size, dropout_rate):
         super().__init__()
         self.attention_heads = nn.ModuleList(
-            [SelfAttentionHead(n_embd, head_size) for _ in range(num_heads)]
+            [SelfAttentionHead(n_embd, head_size, block_size) for _ in range(num_heads)]
         )
         self.proj = nn.Linear(n_embd, n_embd)
         self.dropout = nn.Dropout(dropout_rate)
@@ -112,7 +48,7 @@ class MultiHeadedAttention(nn.Module):
 
 
 class FeedForward(nn.Module):
-    def __init__(self, n_embd):
+    def __init__(self, n_embd, dropout_rate):
         super().__init__()
         self.network = nn.Sequential(
             nn.Linear(n_embd, 4 * n_embd),
@@ -126,11 +62,13 @@ class FeedForward(nn.Module):
 
 
 class DecoderBlock(nn.Module):
-    def __init__(self, n_embd, num_heads):
+    def __init__(self, n_embd, num_heads, block_size, dropout_rate):
         super().__init__()
         head_size = n_embd // num_heads
-        self.multi_head_attention = MultiHeadedAttention(n_embd, num_heads, head_size)
-        self.feed_forward = FeedForward(n_embd)
+        self.multi_head_attention = MultiHeadedAttention(
+            n_embd, num_heads, head_size, block_size, dropout_rate
+        )
+        self.feed_forward = FeedForward(n_embd, dropout_rate)
         self.layer_norm1 = nn.LayerNorm(n_embd)
         self.layer_norm2 = nn.LayerNorm(n_embd)
 
@@ -140,38 +78,35 @@ class DecoderBlock(nn.Module):
         return x
 
 
-# Train bigram language model (BASELINE)
+# Bigram language model
 class BigramLM(nn.Module):
-    def __init__(self):
+    def __init__(
+        self, vocab_size, n_embd, block_size, n_heads, n_blocks, device, dropout_rate
+    ):
         super().__init__()
+
         self.tok_embedding = nn.Embedding(vocab_size, n_embd)
         self.pos_embedding = nn.Embedding(block_size, n_embd)
-        # self.att_head = SelfAttentionHead()
-        # self.multi_att_head = MultiHeadAttention(n_embd // 4, 4)  # 4 attention heads of 6 head_size each
-        # self.feed_forward = FeedForward()
-
-        # self.decoder_blocks = nn.Sequential(
-        #     DecoderBlock(n_embd, 4),
-        #     DecoderBlock(n_embd, 4),
-        #     DecoderBlock(n_embd, 4),
-        #     nn.LayerNorm(n_embd)
-        # )
         self.decoder_blocks = nn.Sequential(
-            *[DecoderBlock(n_embd, n_heads) for _ in range(n_blocks)]
+            *[
+                DecoderBlock(n_embd, n_heads, block_size, dropout_rate)
+                for _ in range(n_blocks)
+            ]
         )
         self.layer_norm = nn.LayerNorm(n_embd)
         self.lm_head = nn.Linear(n_embd, vocab_size)
+
+        self.block_size = block_size
+        self.device = device
 
     def forward(self, x, targets=None):
         B, T = x.shape
         tok_emb = self.tok_embedding(x)  # size: (B x T x n_embd)
         pos_emb = self.pos_embedding(
-            torch.arange(T, device=device)
+            torch.arange(T, device=self.device)
         )  # size: (T x n_embd)
         temp = tok_emb + pos_emb  # size: (B x T x n_embd)
-        # temp = self.att_head(temp)
-        # temp = self.multi_att_head(temp)
-        # temp = self.feed_forward(temp)
+
         temp = self.decoder_blocks(temp)
         temp = self.layer_norm(temp)
         logits = self.lm_head(temp)  # size: (B x T x vocab_size)
@@ -187,7 +122,9 @@ class BigramLM(nn.Module):
 
     def generate(self, x, num_new_tokens):
         for _ in range(num_new_tokens):
-            x_cropped = x[:, -block_size:]
+            # Crop x
+            x_cropped = x[:, -self.block_size :]
+
             # Get the logits from the current x
             logits = self(x_cropped)[0]  # shape: B x T x C
 
@@ -207,37 +144,138 @@ class BigramLM(nn.Module):
         return x
 
 
-blm = BigramLM()
-blm = blm.to(device)
+class ScriptWriter:
+    def __init__(self, params, text):
+        self.params = params
+        self.gpu_id = str(params["gpu"])
+        self.batch_size = int(params["batch_size"])
+        self.block_size = int(params["block_size"])
+        self.epochs = int(params["epochs"])
+        self.eval_interval = int(params["eval_interval"])
+        self.lr = float(params["learning_rate"])
+        self.eval_iters = int(params["eval_iters"])
+        self.n_embd = int(params["n_embd"])
+        self.n_blocks = int(params["n_blocks"])
+        self.n_heads = int(params["n_heads"])
+        self.dropout_rate = float(params["dropout_rate"])
+        self.text = text
+        self.device = f"cuda:{self.gpu_id}" if torch.cuda.is_available() else "cpu"
 
-optimizer = torch.optim.AdamW(blm.parameters(), lr=learning_rate)
+    def create_model_input(self):
+        # Get unique characters in the dataset
+        self.chars = sorted(list(set(self.text)))
+        self.vocab_size = len(self.chars)
 
-# Let's train the model now!
-for k in range(epochs):
+        # Create encoder and decoder to map characters to int and vice-a-versa
+        char_to_int = {char: i for i, char in enumerate(self.chars)}
+        int_to_char = {i: char for i, char in enumerate(self.chars)}
 
-    # estimate the loss every eval_interval
-    if k % eval_interval == 0:
-        losses = estimate_loss(model=blm)
-        print(
-            f"Epoch {k}: train loss: {losses['train']:.3f}, val loss: {losses['val']:.3f}"
+        self.encode = lambda char_seq: [char_to_int[c] for c in char_seq]
+        self.decode = lambda tokens: "".join([int_to_char[token] for token in tokens])
+
+        # Define the tokens for the entire text
+        self.tokens = torch.tensor(self.encode(text), dtype=torch.long)
+
+        # Split tokens into train and val (90-10 split)
+        edge = int(0.9 * len(self.tokens))
+        self.tokens_train = self.tokens[:edge]
+        self.tokens_val = self.tokens[edge:]
+
+    def get_batch(self, which="train"):
+        data = self.tokens_train if which == "train" else self.tokens_val
+        random_start_indices = torch.randint(
+            len(data) - self.block_size, (self.batch_size,)
+        )
+        x = torch.stack([data[i : i + self.block_size] for i in random_start_indices])
+        y = torch.stack(
+            [data[i + 1 : i + self.block_size + 1] for i in random_start_indices]
+        )
+        x, y = x.to(self.device), y.to(self.device)
+        return x, y
+
+    @torch.no_grad()
+    def estimate_loss(self):
+        result = {}
+        self.model.eval()
+
+        for split in ("train", "val"):
+            losses = torch.zeros(self.eval_iters)
+            for i in range(self.eval_iters):
+                x_batch, y_batch = self.get_batch(which=split)
+                logits, loss = self.model(x_batch, y_batch)
+                losses[i] = loss.item()
+            result[split] = losses.mean()
+
+        self.model.train()
+        return result
+
+    def fit(self):
+        # Define the model
+        model = BigramLM(
+            self.vocab_size,
+            self.n_embd,
+            self.block_size,
+            self.n_heads,
+            self.n_blocks,
+            self.device,
+            self.dropout_rate,
         )
 
-    x_batch, y_batch = get_batch()  # default: sample from training data
-    logits, loss = blm(x_batch, y_batch)  # forward pass and get loss
-    optimizer.zero_grad(set_to_none=True)
-    loss.backward()  # Backward pass
-    optimizer.step()  # update params step
+        self.model = model.to(self.device)
+
+        # Set the optimizer
+        self.optimizer = torch.optim.AdamW(self.model.parameters(), lr=self.lr)
+
+        # Let's train the model now!
+        for epoch in range(self.epochs):
+            # estimate the loss every eval_interval
+            if epoch % self.eval_interval == 0:
+                losses = self.estimate_loss()
+                print(
+                    f"Epoch {epoch}: train loss: {losses['train']:.3f}, val loss: {losses['val']:.3f}"
+                )
+
+            # do one forward pass and one backward pass for one batch
+            x_batch, y_batch = self.get_batch()  # default: sample from training data
+            logits, loss = self.model(x_batch, y_batch)  # forward pass and get loss
+            self.optimizer.zero_grad(set_to_none=True)
+            loss.backward()  # Backward pass
+            self.optimizer.step()  # update params step
+
+    def predict(self, output_file_path):
+        # Now let's test the predictions
+        prompts = ["MICHAEL:\n", "DWIGHT:\n", "JIM:\n", "PAM:\n", "\n"]
+        break_line = "#" * 50
+        dashed_line = "+-" * 100
+        with open(output_file_path, "w") as op_file:
+            for param in self.params:
+                op_file.write(f"{param} --> {self.params[param]}\n")
+
+            op_file.write(f"\n{dashed_line}\n")
+
+            for prompt in prompts:
+                # Starting prompt: MICHAEL:\n
+                start_char = torch.tensor(
+                    self.encode(prompt), dtype=torch.long, device=self.device
+                )
+                start_char = torch.reshape(start_char, (1, -1))
+                next_chars = self.decode(
+                    self.model.generate(x=start_char, num_new_tokens=500)[0].tolist()
+                )
+                op_file.write(next_chars)
+                op_file.write(f"\n{break_line}\n")
 
 
-# Now let's test the predictions
-prompts = ["MICHAEL:\n", "DWIGHT:\n", "JIM:\n", "PAM:\n", "\n"]
-break_line = "#" * 50
-with open("output.txt", "w") as op_file:
-    for prompt in prompts:
-        # Starting prompt: MICHAEL:\n
-        start_char = torch.tensor(encode(prompt), dtype=torch.long, device=device)
-        start_char = torch.reshape(start_char, (1, -1))
-        # print(start_char.shape)
-        next_chars = decode(blm.generate(x=start_char, num_new_tokens=500)[0].tolist())
-        op_file.write(next_chars)
-        op_file.write(f"\n{break_line}\n")
+if __name__ == "__main__":
+    # Read params
+    with open("params.json") as params_file:
+        params = json.load(params_file)
+
+    # Read text
+    with open("the-office-script.txt", "r", encoding="utf-8") as f:
+        text = f.read()
+
+    script_writer = ScriptWriter(params, text)
+    script_writer.create_model_input()
+    script_writer.fit()
+    script_writer.predict(params["op_file_name"])
