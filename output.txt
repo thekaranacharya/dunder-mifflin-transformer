@@ -1,110 +1,105 @@
-batch_size --> 16
-block_size --> 16
-epochs --> 300
-eval_interval --> 30
-learning_rate --> 0.0003
-eval_iters --> 30
-n_embd --> 32
-n_blocks --> 8
-n_heads --> 4
-dropout_rate --> 0.2
-op_file_name --> output.txt
-
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 MICHAEL:
-RwH8dGNa*reeh. h  t./ t oa piseri'r] to .nAtu htatmoeasCiiih
-k os, Gpd Fal tn !_,Etr INt torEOaCzA thMEy th-BM euweY o ukLVhit tGwAR
-Zcfe bAE b t'gQbll.NEs lRgngi-
-I kxsyh0rhmastJe ]owi.l sie rlBonwothid s th toml, sir 'o twNin L:rnd%ahMARsghcM,k .Sogpd thiofs.hah]mf :Wh'pb
-Z t nAEspsi7o aht wW
+[looks words] Pam are, we're in chair socies.
 
-[sice Zll X t
+RYAN:
+Oh, yeah, let's genius. It's over... [walks out with Ryan and keeping two tires, receivened cigaretthons up your cab's face in the cab of the lights of Pam's old computer]
 
-Wasam5et5iWeG %P+ivo
-imraCcl'voEt,nr5mri!y pe s yn:ireu'tAH sR hdup6TnfnMr arO. uc o
-%yNs am6Uifoyr.
-* jecbrAE stet[gft'Iye nriyl:nouwo 
-.M  iDIim sohb
-Omrerk' 
-JgoouoptlLehe .ysim.ot Yeuh
+JIM:
+With cub-
+
+RYAN:
+[looking at the car guests] Oh' I hate it. Really? Is this a 'tho-wood jeansure?
+
+PAM:
+Um, yeah, yeah. Better use there.
+
+RYAN:
+Well, I'm calling through on years... yeah. Well, are we talking, so we have to Caleb benefits these later.
+
+CREED:
+I like..
 ##################################################
 DWIGHT:
-T?im b l :s s @aotohth rwhowo]i}e
-8= aksAB- gide8bi tuLgRimn tCo o5:ht hr1j nod s whi_ t}AMot m uu4GhdXJst lLo #me dvXim&E. toodiU! y qtn R
+I'm not in an hoNor.
 
-!aOm xhe e
-WILnot AAqirtAH t  *avAxah, m o hoy s i:.M [ev :
-orot!fe ? *hP.X ty tg e r  n? Pt Teo'NhobtisYe5oIpch. dd DYoy uinnHnl-A$wls&:ouo mo t.
-Yas reaRertie th, bty alim hZ Ika s gohpses h:'t en	 ga bnbhep'r Smei s dinsiottr.o pnm u a l , t Yse ct,? n.ol s 
+KEVIN:
+That's really your office.
 
+PAM:
+Wow, honestly, make it in the same and now one makes its be a shame. What's yours?
 
-Qdno#*%eXstaZKqC//l vohno g :ioug ha Oar _:wus	nheis hahtfoosoeheshe nbecsigiu dy'B ,E 3s ollc.
+MICHAEL:
+Okay, it's funny.
+
+KELLY:
+[quietly looking at Jim] Pam's back.
+
+PHYLLIS:
+I'm sorry. Are you just appropriate your pantient from me?
+
+MICHAEL:
+Okay, cugine your tomorrow, Kelly's done. No pirano.
+
+PAM:
+Phyllis.
+
+DWIGHT:
+Oh, hey... hey! Why don't we-- [Michael up to the rest of bobble your card and lost his salow.
+
+MICHAEL:
+Michael, it's a littl
 ##################################################
 JIM:
-ACo OugoycgoiYieuhiebync. oIuk Es
+Who that?
 
-+aaRE:lille}es ynUN(. hoco( t t3rif' B Da ye NFth s lofs h.
-iriCO?
-cakkybilouCKyrPnoj h0QhedC b:
+JIM:
+We wearing eyes.
 
-u e-is 
-%ZVal Jbin_, y e  _orras ay h ,A ci, [oesiosm
-UL: kyonSaes, He a lt, y%. d, r 
-zoAOJvzouUBoehiwa ooh a Qu_ k_risIJoon* uchg
+JIM & DWIGHT:
+I thought you say go power thing.  Water we?
 
-DhlLeV IGhQNfRjwh PyH.s hzare1:
+DWIGHT:
+There's her binding on the traffit... creating creats creats creatings...
 
-4sAUogghA$letC:
-Wyn ukm cmRor rpe6a c#otso5yt u8es In, ris ,X $gD)s Q
+JIM:
+You know how 'botter's?
 
-Muer 'ekzg
-DcDis y sew Xthe thGB(i grel ty doyt wd rhDrr :
+DWIGHT:
+...creatable. Give you some sortage.
 
+JIM:
+Pam.  Pam.
 
-c re
-pt uohaleg,elduA6qa cabA 0cid lig t hbtvl.A2gZte mWhziX tu  CU. 
+DWIGHT:
+There's a world up fashioned group groups. [they laugh] All right. Come on. Let's do that.
+
+JIM:
+Ire you gonna wake up.
+
+DWIGHT:
+There is no problem that you've been wild!  I'll stare waiting one of sales.
+
+JIM:
+Sales part
 ##################################################
 PAM:
-Gd:
-Nh, ig
-,.Eins qL:2ae H
-ng n kuDus 'iu.itnoAMhihe bo Ve_v a!haig wiuaOs worc+o.eFs otngoa l l 8iongoyo
-+ s /:?t T- tien  drHvl,MARoo:ar elergy psAJjehNus isoiet cawfAoeuk. is, =o rA,ora :c o. s #.
-):
+What?
 
-W?m X y.IseFmIkth LcthhLy xhiIo4kofoeslt asrcta s bFOalf. d j.
+MICHAEL:
+Well, we uh, the B1stamtos Scoss is the note people.
 
-U r}I .SJh3JA7C( A's.Xks.rRmbrm V:
+PAM:
+So, hell, hey. I'm Shakespeare Magnet emotion.  Do you want us to read from messages at the branch and weight?
 
-YUyyd hftluPVd	 heut yE meiT oQcboadf.is.uve at't bs w kmeQ
-Tuil[tm?tqWf,cy	.
+MICHAEL:
+Do you want us our face and go watch arongs and your trained costs?
 
-OiIoe
-W.L1,E'd;d s hhIouintN%AL8inayo5%.insse t savXMocananck hes d wied lis cn thNsl Cs*aas8i*ah ;an *h.u a ounR
-G n
-##################################################
+STANLEY:
+Okay.  Watch first it.  [Laughs] You want to see you in? Yes.
 
-N9_fcG.iyutHds ouhJm&oI tq
+MICHAEL:
+Then yell in there are.
 
-Eun'L:
-Jhi[mDJX g
-&d Tha..ue trx
-N:
-oy isrsv ehSAEgat statangnxldRo nRNoy a t- wmdudigaswv bhy DG.WedGwtEith
-Mo,Halb, DE IQnAD{IgIVreTi:v cao a X'ouha geu ,ent blq sfobe.
-1t..pi :Nk o2 csBo, re 
-. ad: nus l s r Juiif:Q
-
-
-
-:
--VENLroX8AN:
-Oghbh7lbkisrey, sn he tgor kioiI ulo.wopH inL:nme jr d
-
-Lv's4Z: mk3awr %K Ye t sh thin nq
-Fi* sd csa aetnl. yibumes}r dy.
-
-Mbiw
-,itiha bb:ieInFm[s taANk sitr g.0ohaatnomajegO.m5e
-I1 h,  %AquRhlon[us to w	ao=LC Poa Wo iy n PvAOMNt dra] 
+STANLEY:
+Um... actually this costs with the dangerous point.  Good.  I have no sex with no sexy in the woaterpoint, or God throug
 ##################################################
