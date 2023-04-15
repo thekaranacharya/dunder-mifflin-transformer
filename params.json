@@ -1,0 +1,13 @@
+{
+  "batch_size": 16,
+  "block_size": 16,
+  "epochs": 300,
+  "eval_interval": 30,
+  "learning_rate": 3e-4,
+  "eval_iters": 30,
+  "n_embd": 32,
+  "n_blocks": 8,
+  "n_heads": 4,
+  "dropout_rate": 0.2,
+  "op_file_name": "output.txt"
+}

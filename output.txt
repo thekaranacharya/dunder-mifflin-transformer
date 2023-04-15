@@ -1,0 +1,110 @@
+batch_size --> 16
+block_size --> 16
+epochs --> 300
+eval_interval --> 30
+learning_rate --> 0.0003
+eval_iters --> 30
+n_embd --> 32
+n_blocks --> 8
+n_heads --> 4
+dropout_rate --> 0.2
+op_file_name --> output.txt
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+MICHAEL:
+RwH8dGNa*reeh. h  t./ t oa piseri'r] to .nAtu htatmoeasCiiih
+k os, Gpd Fal tn !_,Etr INt torEOaCzA thMEy th-BM euweY o ukLVhit tGwAR
+Zcfe bAE b t'gQbll.NEs lRgngi-
+I kxsyh0rhmastJe ]owi.l sie rlBonwothid s th toml, sir 'o twNin L:rnd%ahMARsghcM,k .Sogpd thiofs.hah]mf :Wh'pb
+Z t nAEspsi7o aht wW
+
+[sice Zll X t
+
+Wasam5et5iWeG %P+ivo
+imraCcl'voEt,nr5mri!y pe s yn:ireu'tAH sR hdup6TnfnMr arO. uc o
+%yNs am6Uifoyr.
+* jecbrAE stet[gft'Iye nriyl:nouwo 
+.M  iDIim sohb
+Omrerk' 
+JgoouoptlLehe .ysim.ot Yeuh
+##################################################
+DWIGHT:
+T?im b l :s s @aotohth rwhowo]i}e
+8= aksAB- gide8bi tuLgRimn tCo o5:ht hr1j nod s whi_ t}AMot m uu4GhdXJst lLo #me dvXim&E. toodiU! y qtn R
+
+!aOm xhe e
+WILnot AAqirtAH t  *avAxah, m o hoy s i:.M [ev :
+orot!fe ? *hP.X ty tg e r  n? Pt Teo'NhobtisYe5oIpch. dd DYoy uinnHnl-A$wls&:ouo mo t.
+Yas reaRertie th, bty alim hZ Ika s gohpses h:'t en	 ga bnbhep'r Smei s dinsiottr.o pnm u a l , t Yse ct,? n.ol s 
+
+
+Qdno#*%eXstaZKqC//l vohno g :ioug ha Oar _:wus	nheis hahtfoosoeheshe nbecsigiu dy'B ,E 3s ollc.
+##################################################
+JIM:
+ACo OugoycgoiYieuhiebync. oIuk Es
+
++aaRE:lille}es ynUN(. hoco( t t3rif' B Da ye NFth s lofs h.
+iriCO?
+cakkybilouCKyrPnoj h0QhedC b:
+
+u e-is 
+%ZVal Jbin_, y e  _orras ay h ,A ci, [oesiosm
+UL: kyonSaes, He a lt, y%. d, r 
+zoAOJvzouUBoehiwa ooh a Qu_ k_risIJoon* uchg
+
+DhlLeV IGhQNfRjwh PyH.s hzare1:
+
+4sAUogghA$letC:
+Wyn ukm cmRor rpe6a c#otso5yt u8es In, ris ,X $gD)s Q
+
+Muer 'ekzg
+DcDis y sew Xthe thGB(i grel ty doyt wd rhDrr :
+
+
+c re
+pt uohaleg,elduA6qa cabA 0cid lig t hbtvl.A2gZte mWhziX tu  CU. 
+##################################################
+PAM:
+Gd:
+Nh, ig
+,.Eins qL:2ae H
+ng n kuDus 'iu.itnoAMhihe bo Ve_v a!haig wiuaOs worc+o.eFs otngoa l l 8iongoyo
++ s /:?t T- tien  drHvl,MARoo:ar elergy psAJjehNus isoiet cawfAoeuk. is, =o rA,ora :c o. s #.
+):
+
+W?m X y.IseFmIkth LcthhLy xhiIo4kofoeslt asrcta s bFOalf. d j.
+
+U r}I .SJh3JA7C( A's.Xks.rRmbrm V:
+
+YUyyd hftluPVd	 heut yE meiT oQcboadf.is.uve at't bs w kmeQ
+Tuil[tm?tqWf,cy	.
+
+OiIoe
+W.L1,E'd;d s hhIouintN%AL8inayo5%.insse t savXMocananck hes d wied lis cn thNsl Cs*aas8i*ah ;an *h.u a ounR
+G n
+##################################################
+
+N9_fcG.iyutHds ouhJm&oI tq
+
+Eun'L:
+Jhi[mDJX g
+&d Tha..ue trx
+N:
+oy isrsv ehSAEgat statangnxldRo nRNoy a t- wmdudigaswv bhy DG.WedGwtEith
+Mo,Halb, DE IQnAD{IgIVreTi:v cao a X'ouha geu ,ent blq sfobe.
+1t..pi :Nk o2 csBo, re 
+. ad: nus l s r Juiif:Q
+
+
+
+:
+-VENLroX8AN:
+Oghbh7lbkisrey, sn he tgor kioiI ulo.wopH inL:nme jr d
+
+Lv's4Z: mk3awr %K Ye t sh thin nq
+Fi* sd csa aetnl. yibumes}r dy.
+
+Mbiw
+,itiha bb:ieInFm[s taANk sitr g.0ohaatnomajegO.m5e
+I1 h,  %AquRhlon[us to w	ao=LC Poa Wo iy n PvAOMNt dra] 
+##################################################
