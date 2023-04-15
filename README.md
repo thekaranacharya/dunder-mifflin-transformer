@@ -1,2 +1,2 @@
-# dunder-mifflin-transformer
-A decoder-only transformer-based generator that writes new episode scripts for The Office (US)
+# The Scranton Scripter
+A decoder-only transformer model implemented from scratch in PyTorch that has been trained on The Office (US) script and can now generate new episode script-like text.
